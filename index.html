@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Create, upload, share, and take percentage-based quizzes.">
+    <title>PercentMe Quiz Studio</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Global quiz builder</p>
+        <h1>PercentMe</h1>
+      </div>
+      <nav class="tabs" aria-label="Main views">
+        <button class="tab active" type="button" data-view="play">Play</button>
+        <button class="tab" type="button" data-view="global">Global</button>
+        <button class="tab" type="button" data-view="builder">Create</button>
+        <button class="tab" type="button" data-view="library">Library</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="view active" id="play-view" aria-labelledby="play-title">
+        <div class="split">
+          <aside class="panel quiz-pick">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Take a quiz</p>
+                <h2 id="play-title">Choose your meter</h2>
+              </div>
+              <button class="icon-button" type="button" id="random-quiz" title="Random quiz" aria-label="Random quiz">?</button>
+            </div>
+            <label class="field">
+              <span>Quiz</span>
+              <select id="quiz-select"></select>
+            </label>
+            <div id="quiz-meta" class="meta-grid"></div>
+            <div class="import-box">
+              <input id="quiz-file" type="file" accept="application/json,.json">
+              <label for="quiz-file" class="file-label">Upload quiz JSON</label>
+              <button type="button" id="load-sample">Load sample</button>
+            </div>
+          </aside>
+
+          <section class="panel player" aria-live="polite">
+            <div id="quiz-start" class="quiz-state active">
+              <p class="eyebrow">Ready</p>
+              <h2 id="selected-title">Loading quiz...</h2>
+              <p id="selected-description" class="muted"></p>
+              <button class="primary" type="button" id="start-quiz">Start quiz</button>
+            </div>
+
+            <div id="quiz-running" class="quiz-state">
+              <div class="progress-row">
+                <span id="question-count">Question 1 of 1</span>
+                <span id="score-preview">0%</span>
+              </div>
+              <div class="progress-track">
+                <div id="progress-bar"></div>
+              </div>
+              <h2 id="question-text"></h2>
+              <div id="answer-list" class="answers"></div>
+              <div class="player-actions">
+                <button type="button" id="prev-question">Back</button>
+                <button class="primary" type="button" id="next-question">Next</button>
+              </div>
+            </div>
+
+            <div id="quiz-result" class="quiz-state result-layout">
+              <div class="meter" aria-label="Quiz result">
+                <svg viewBox="0 0 120 120" role="img" aria-labelledby="meter-title">
+                  <title id="meter-title">Percentage result</title>
+                  <circle class="meter-bg" cx="60" cy="60" r="50"></circle>
+                  <circle class="meter-ring" id="meter-ring" cx="60" cy="60" r="50"></circle>
+                </svg>
+                <strong id="result-percent">0%</strong>
+              </div>
+              <div>
+                <p class="eyebrow">Result</p>
+                <h2 id="result-title"></h2>
+                <p id="result-message" class="muted"></p>
+                <div class="player-actions">
+                  <button type="button" id="retake-quiz">Retake</button>
+                  <button class="primary" type="button" id="share-result">Copy result</button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="global-view" aria-labelledby="global-title">
+        <section class="global-hero">
+          <div>
+            <p class="eyebrow">Global base</p>
+            <h2 id="global-title">Discover quizzes from everywhere</h2>
+            <p class="muted">Recent uploads and popular plays from the quiz base appear here. This static GitHub version uses the quizzes saved or shared in this browser.</p>
+          </div>
